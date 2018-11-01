@@ -1,5 +1,5 @@
 from __future__ import print_function
-import os, sys ,ctypes
+import os, sys
 from pathlib import Path
 
 # 重写判断程序是否具有管理员权限的函数

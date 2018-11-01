@@ -1,6 +1,6 @@
-# -*- coding:utf-8 -*-
-from maindemo.LoadFiles import LoadFiles,IntilizeData,WriteFiles
+# 在命令行运行的时候要把文件夹的名字去掉
 import os, sys ,ctypes
+from LoadFiles import (LoadFiles,IntilizeData,WriteFiles)
 
 def is_admined():
     print("判断是否具有管理员权限")
@@ -36,10 +36,7 @@ else:
     else:  # in python2.x
         ctypes.windll.shell32.ShellExecuteW(None, u"runas", unicode(sys.executable), unicode(__file__), None, 1)
 
-
-
-
-# print(fileManger.myFiles)
+print(fileManger.myFiles)
 loadData = IntilizeData()
 if loadData.loadMainData():
     loadData.updateHeadData("userNoma","1",{0:"F:\\PythonTest"},countAllSize([fileManger.size,fileManger.size]))

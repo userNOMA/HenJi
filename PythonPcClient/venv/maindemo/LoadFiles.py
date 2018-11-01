@@ -1,12 +1,10 @@
-# -*- coding:utf-8 -*-
-from __future__ import print_function
-import os, sys ,ctypes
-import shutil
+# from __future__ import print_function
+import os, sys
+import shutil #有问题，好像没问题
 from pathlib import Path
 from os.path import join, getsize
-import numpy as np
+# import numpy as np #真的有问题
 import json
-
 
 class LoadFiles:
     userName = ""
@@ -324,7 +322,8 @@ class IntilizeData:
             print("文件被删除！")
 
 class WriteFiles:
-
+    wkSp = ""
+    prsnSp = {}
     def __init__(self):
         print("初始化操作")
         self.wkSp = "c:\\henji"
@@ -361,27 +360,11 @@ class WriteFiles:
                 os.symlink(fileInfo.get('path'), newPath)
 
 if __name__ == "__main__":
-    # myFileManger = ManageFiles("F:\\PythonTest","userNoma")
-    # myFileManger.creatSp()
-    # myFileManger.loadFiles()
-    # myFileManger.writeFiles()
-    # myFileManger.loadPrsnFiles()
-    # myFileManger.countSize()
-    # myFileManger.cutPrsnFiles()
-    # myFileManger.writeInfo()
-    # # myFileManger.readInfo()
-    # print(myFileManger.myFiles)
-    # print(myFileManger.myDirs)
-    # print(myFileManger.myPrsnFiles)
-    # print('总共创建文件链接数据量：',round(myFileManger.size.get('files')/(1024*1024),2),'M')
-    # print('总共创建文件夹链接数据量：', round(myFileManger.size.get('dirs')/(1024*1024),2),'M')
-    # print('总共转移文件数据量：', round(myFileManger.size.get('prsnFiles')/(1024*1024),2),'M')
-    # fileManger = ManageFiles("F:\\PythonTest")
-    # print(fileManger.myFiles)
-    # print(fileManger.myDirs)
-    # print(fileManger.myPrsnFiles)
-    # print(fileManger.size)
-    filel = open("F:\\PythonTest\\mm.txt",'w',encoding='utf-8')
-
-    filel.write("你是谁？\n")
-    filel.write(json.dumps({111:"你是谁？"},ensure_ascii=False))
+    fileManger = LoadFiles()
+    fileManger.load("F:\\PythonTest")
+    writeFiles = WriteFiles()
+    allFiles = {}
+    allFiles.update(fileManger.myFiles)
+    allFiles.update(fileManger.myDirs)
+    print(allFiles)
+    print("程序开始了")
